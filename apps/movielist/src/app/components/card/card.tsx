@@ -20,11 +20,16 @@ export interface CardProps { movie: IMovie}
 
 export function Card(props: CardProps|any) {
   return (
-    <div>
-      <h2>{`#${props.movie.ranking} - ${props.movie.title} (${props.movie.year})`}</h2>
-      <img src={props.movie.img.src} alt={props.movie.img.alt} width='200' />
-      <p>{`Distributor: ${props.movie.distributor}`}</p>
-      <p>{`Amount: ${props.movie.amount}`}</p>
+    <div className={'card'}>
+      <img className={'card-img-top'} src={props.movie.img.src} alt={props.movie.img.alt} width='200' />
+      <div className={'card-body'}>
+        <h2 className={'card-title'}>{`#${props.movie.ranking} - ${props.movie.title} (${props.movie.year})`}</h2>
+      </div>
+      <ul className={'list-group list-group-flush'}>
+        <li className={'list-group-item'}>{`Distributor: ${props.movie.distributor}`}</li>
+        <li className={'list-group-item'}>{`Amount: ${props.movie.amount}`}</li>
+      </ul>
+
     </div>
   );
 }

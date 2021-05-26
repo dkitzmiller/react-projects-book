@@ -30,8 +30,14 @@ export function MovieList(props: MovieListProps) {
   } else {
     return (
       <>
+        <div className='row'>
         <h1>Movie List</h1>
-        { data.map(movie => <Card key={movie.id} movie={movie} />) }
+        { data.map(movie =>
+          <div className='col-sm-2'>
+            <Card key={movie.id} movie={movie} />
+          </div>
+          )}
+        </div>
       </>
     )
 
