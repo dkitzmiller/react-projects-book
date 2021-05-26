@@ -1,0 +1,129 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "movielist",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true,
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true
+      }
+    }
+  },
+  "projects": {
+    "movielist": {
+      "root": "apps/movielist",
+      "sourceRoot": "apps/movielist/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/movielist",
+            "index": "apps/movielist/src/index.html",
+            "main": "apps/movielist/src/main.tsx",
+            "polyfills": "apps/movielist/src/polyfills.ts",
+            "tsConfig": "apps/movielist/tsconfig.app.json",
+            "assets": [
+              "apps/movielist/src/favicon.ico",
+              "apps/movielist/src/assets"
+            ],
+            "styles": ["apps/movielist/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/movielist/src/environments/environment.ts",
+                  "with": "apps/movielist/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "movielist:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "movielist:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/movielist/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/movielist"],
+          "options": {
+            "jestConfig": "apps/movielist/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "movielist-e2e": {
+      "root": "apps/movielist-e2e",
+      "sourceRoot": "apps/movielist-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/movielist-e2e/cypress.json",
+            "tsConfig": "apps/movielist-e2e/tsconfig.e2e.json",
+            "devServerTarget": "movielist:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "movielist:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/movielist-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
