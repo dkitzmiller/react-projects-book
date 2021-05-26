@@ -16,9 +16,9 @@ export interface IMovie {
 }
 
 /* eslint-disable-next-line */
-export interface CardProps { movie: IMovie }
+export interface CardProps { movie: IMovie}
 
-export function Card(props: CardProps) {
+export function Card(props: CardProps|any) {
   return (
     <div>
       <h2>{`#${props.movie.ranking} - ${props.movie.title} (${props.movie.year})`}</h2>
